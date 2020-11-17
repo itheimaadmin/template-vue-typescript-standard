@@ -1,8 +1,8 @@
 <template>
   <div>
-    <PortalHeader />
+    <portal-header />
     <router-view />
-    <PortalFooter />
+    <portal-footer />
   </div>
 </template>
 
