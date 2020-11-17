@@ -10,12 +10,6 @@ export default [
         name: 'home',
         path: 'home',
         component: () => import('../pages/home/index.vue')
-      },
-      // 关于
-      {
-        name: 'about',
-        path: 'about',
-        component: () => import('../pages/about/index.vue')
       }
     ]
   }

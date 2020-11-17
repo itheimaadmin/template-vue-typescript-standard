@@ -11,7 +11,7 @@ service.defaults.headers.post['Content-Type'] = 'application/json'
 // Request interceptors
 service.interceptors.request.use(
   config => {
-    let token = getToken()
+    const token = getToken()
     if (token) {
       config.headers['Authorization'] = token
     }
@@ -42,7 +42,7 @@ export const createAPI = (
   params: any = undefined,
   data: any = undefined
 ) => {
-  let config: AxiosRequestConfig = {}
+  const config: AxiosRequestConfig = {}
   config.url = url
   config.method = method
   if (params !== undefined) {
@@ -56,7 +56,7 @@ export const createAPI = (
 }
 
 export const createFormAPI = (url: string, method: Method, data: any) => {
-  let config: AxiosRequestConfig = {}
+  const config: AxiosRequestConfig = {}
   config.url = url
   config.method = method
   config.data = data
