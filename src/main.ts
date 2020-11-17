@@ -5,6 +5,14 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+// ElementUI
+import ElementUI from 'element-ui'
+Vue.use(ElementUI)
+
+// 注册模块
+import Developer from '@/module-developer'
+Developer.install(router)
+
 new Vue({
   router,
   store,
