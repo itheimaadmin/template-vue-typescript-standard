@@ -13,6 +13,7 @@ Vue.use(ElementUI)
 // 注册模块
 import User from '@/module-user'
 User.install(router)
+// TODO: vue use的方式
 
 new Vue({
   router,
