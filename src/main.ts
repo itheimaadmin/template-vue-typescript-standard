@@ -7,11 +7,12 @@ Vue.config.productionTip = false
 
 // ElementUI
 import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
 // 注册模块
-import Developer from '@/module-developer'
-Developer.install(router)
+import User from '@/module-user'
+User.install(router)
 
 new Vue({
   router,

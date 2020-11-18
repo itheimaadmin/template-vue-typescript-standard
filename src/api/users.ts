@@ -1,8 +1,8 @@
 import { createAPI } from '@/utils/request'
 
 // 列表
-export function list(page: number, pagesize: number): Promise<any> {
-  return createAPI(`/dev/v1_0/app/${page}/${pagesize}`, 'get')
+export function list(params: any): Promise<any> {
+  return createAPI('/users', 'get', params)
 }
 
 // 单个
