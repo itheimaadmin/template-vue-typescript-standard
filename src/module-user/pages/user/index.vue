@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <el-button type="text" size="mini" @click="openUserAddDialog"
+      >新增</el-button
+    >
     <el-table
       class="dataList"
       v-loading="listLoading"
@@ -11,12 +14,18 @@
       <el-table-column prop="id" label="编号"></el-table-column>
       <el-table-column prop="account" label="账号"></el-table-column>
       <el-table-column prop="fullName" label="姓名"></el-table-column>
+      <el-table-column prop="mobile" label="联系电话"></el-table-column>
+      <el-table-column prop="email" label="邮件"></el-table-column>
+      <el-table-column prop="create_date" label="注册时间"></el-table-column>
       <el-table-column label="操作">
         <template>
-          <el-button type="text" size="mini" @click="handleUserEdit"
+          <el-button type="text" size="mini" @click="openUserEditDialog"
             >编辑</el-button
           >
           <el-button type="text" size="mini">删除</el-button>
+          <el-button type="text" size="mini" @click="openUserDetailDialog"
+            >查看</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -29,24 +38,41 @@
       @pagination="getList"
     />
 
+    <!-- 用户添加 -->
+    <user-add-dialog
+      :dialogVisible.sync="addDialogVisible"
+      @refreshList="getList"
+    />
+
     <!-- 用户编辑 -->
-    <user-edit :dialogVisible.sync="dialogVisible" @refreshList="getList" />
+    <user-edit-dialog
+      :dialogVisible.sync="editDialogVisible"
+      :id="id"
+      @refreshList="getList"
+    />
+
+    <!-- 用户查看 -->
+    <user-detail-dialog :dialogVisible.sync="detailDialogVisible" :id="id" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import Pagination from '@/components/pagination/index.vue'
-import UserEdit from './components/user-edit.vue'
+import UserAddDialog from './components/user-add-dialog.vue'
+import UserEditDialog from './components/user-edit-dialog.vue'
+import UserDetailDialog from './components/user-detail-dialog.vue'
 import { list } from '@/api/users'
 import { Page } from '@/entity/page'
-import User from '@/module-user'
+import { User } from '@/entity/user'
 
 @Component({
   name: 'UserList',
   components: {
     Pagination,
-    UserEdit
+    UserAddDialog,
+    UserEditDialog,
+    UserDetailDialog
   }
 })
 export default class extends Vue {
@@ -60,10 +86,12 @@ export default class extends Vue {
   private listLoading = false
   private listQuery = {
     page: 1,
-    pagesize: 10,
-    keyword: ''
+    pagesize: 10
   }
-  private dialogVisible = false
+  private addDialogVisible = false
+  private editDialogVisible = false
+  private detailDialogVisible = false
+  private id = 0
 
   @Watch('listQueryData', { deep: true, immediate: true })
   private watchListQueryData(newVal: string) {
@@ -85,8 +113,16 @@ export default class extends Vue {
     this.listLoading = false
   }
 
-  private handleUserEdit() {
-    this.dialogVisible = true
+  private openUserAddDialog() {
+    this.addDialogVisible = true
+  }
+
+  private openUserEditDialog() {
+    this.editDialogVisible = true
+  }
+
+  private openUserDetailDialog() {
+    this.detailDialogVisible = true
   }
 }
 </script>
