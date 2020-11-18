@@ -1,10 +1,13 @@
 <template>
   <div class="container">
-    <el-button type="text" size="mini" @click="handleOpenAddDialog"
-      >新增</el-button
-    >
+    <div class="button-area">
+      <el-button type="primary" size="small" @click="handleOpenAddDialog"
+        >新增</el-button
+      >
+    </div>
+
     <el-table
-      class="dataList"
+      class="data-list"
       v-loading="listLoading"
       :data="listData.items"
       border
@@ -150,8 +153,12 @@ export default class extends mixins(MixinTools) {
   width: 1366px;
   margin: 0 auto;
 
-  .dataList {
-    margin-top: 50px;
+  .button-area {
+    text-align: right;
+  }
+
+  .data-list {
+    margin-top: 20px;
   }
 }
 </style>

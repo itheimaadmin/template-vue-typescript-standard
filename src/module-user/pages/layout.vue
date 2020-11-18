@@ -1,24 +1,22 @@
 <template>
   <div>
-    <!-- <portal-header /> -->
+    <module-header />
     <router-view />
-    <!-- <portal-footer /> -->
+    <module-footer />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-// import PortalHeader from '../components/portal-header/index.vue'
-// import PortalFooter from '../components/portal-footer/index.vue'
+import ModuleHeader from '../components/module-header/index.vue'
+import ModuleFooter from '../components/module-footer/index.vue'
 
 @Component({
   name: 'Layout',
   components: {
-    // PortalHeader,
-    // PortalFooter
+    ModuleHeader,
+    ModuleFooter
   }
 })
 export default class extends Vue {}
 </script>
-
-<style lang="scss"></style>
