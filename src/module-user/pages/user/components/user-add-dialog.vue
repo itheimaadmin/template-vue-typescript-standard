@@ -27,13 +27,15 @@
 </template>
 
 <script lang="ts">
-import { Component, PropSync, Vue } from 'vue-property-decorator'
+import { Component, PropSync } from 'vue-property-decorator'
+import MixinTools from '@/utils/mixins.vue'
 import { add } from '@/api/users'
+import { mixins } from 'vue-class-component'
 
 @Component({
   name: 'UserAddDialog'
 })
-export default class extends Vue {
+export default class extends mixins(MixinTools) {
   @PropSync('dialogVisible', { type: Boolean, default: false })
   private syncDialogVisible!: boolean
 
@@ -48,6 +50,7 @@ export default class extends Vue {
     await add(this.user)
 
     this.syncDialogVisible = false
+    this.showMessage('操作成功')
     this.$emit('refreshList')
   }
 }

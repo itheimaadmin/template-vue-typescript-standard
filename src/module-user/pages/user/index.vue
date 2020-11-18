@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <el-button type="text" size="mini" @click="openUserAddDialog"
+    <el-button type="text" size="mini" @click="handleOpenAddDialog"
       >新增</el-button
     >
     <el-table
@@ -18,12 +18,17 @@
       <el-table-column prop="email" label="邮件"></el-table-column>
       <el-table-column prop="create_date" label="注册时间"></el-table-column>
       <el-table-column label="操作">
-        <template>
-          <el-button type="text" size="mini" @click="openUserEditDialog"
+        <template slot-scope="scope">
+          <el-button type="text" size="mini" @click="handleOpenEditDialog"
             >编辑</el-button
           >
-          <el-button type="text" size="mini">删除</el-button>
-          <el-button type="text" size="mini" @click="openUserDetailDialog"
+          <el-button
+            type="text"
+            size="mini"
+            @click="handleOpenRemoveConfirm(scope.row.id)"
+            >删除</el-button
+          >
+          <el-button type="text" size="mini" @click="handleOpenDetailDialog"
             >查看</el-button
           >
         </template>
@@ -38,33 +43,35 @@
       @pagination="getList"
     />
 
-    <!-- 用户添加 -->
+    <!-- 用户添加对话框 -->
     <user-add-dialog
       :dialogVisible.sync="addDialogVisible"
       @refreshList="getList"
     />
 
-    <!-- 用户编辑 -->
+    <!-- 用户编辑对话框 -->
     <user-edit-dialog
       :dialogVisible.sync="editDialogVisible"
       :id="id"
       @refreshList="getList"
     />
 
-    <!-- 用户查看 -->
+    <!-- 用户查看对话框 -->
     <user-detail-dialog :dialogVisible.sync="detailDialogVisible" :id="id" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Watch } from 'vue-property-decorator'
+import MixinTools from '@/utils/mixins.vue'
 import Pagination from '@/components/pagination/index.vue'
 import UserAddDialog from './components/user-add-dialog.vue'
 import UserEditDialog from './components/user-edit-dialog.vue'
 import UserDetailDialog from './components/user-detail-dialog.vue'
-import { list } from '@/api/users'
+import { list, remove } from '@/api/users'
 import { Page } from '@/entity/page'
 import { User } from '@/entity/user'
+import { mixins } from 'vue-class-component'
 
 @Component({
   name: 'UserList',
@@ -75,7 +82,7 @@ import { User } from '@/entity/user'
     UserDetailDialog
   }
 })
-export default class extends Vue {
+export default class extends mixins(MixinTools) {
   private listData: Page<User> = {
     counts: 0,
     page: 0,
@@ -113,15 +120,26 @@ export default class extends Vue {
     this.listLoading = false
   }
 
-  private openUserAddDialog() {
+  private handleOpenAddDialog() {
     this.addDialogVisible = true
   }
 
-  private openUserEditDialog() {
+  private handleOpenEditDialog() {
     this.editDialogVisible = true
   }
 
-  private openUserDetailDialog() {
+  private async handleOpenRemoveConfirm(id: number) {
+    try {
+      await this.showDeleteConfirm()
+
+      await remove(id)
+      this.showMessage('操作成功')
+    } catch (err) {
+      console.log('err: ' + err)
+    }
+  }
+
+  private handleOpenDetailDialog() {
     this.detailDialogVisible = true
   }
 }

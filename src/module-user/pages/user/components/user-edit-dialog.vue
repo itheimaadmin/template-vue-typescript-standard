@@ -28,13 +28,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, PropSync, Vue } from 'vue-property-decorator'
+import { Component, Prop, PropSync } from 'vue-property-decorator'
+import MixinTools from '@/utils/mixins.vue'
 import { detail, edit } from '@/api/users'
+import { mixins } from 'vue-class-component'
 
 @Component({
   name: 'UserEditDialog'
 })
-export default class extends Vue {
+export default class extends mixins(MixinTools) {
   @PropSync('dialogVisible', { type: Boolean, default: false })
   private syncDialogVisible!: boolean
 
