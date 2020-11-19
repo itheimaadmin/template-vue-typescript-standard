@@ -9,7 +9,6 @@
 ## 目录结构
 
 ```
-template-vue-typescript-standard
 ├─ public
 │  ├─ favicon.ico
 │  └─ index.html
