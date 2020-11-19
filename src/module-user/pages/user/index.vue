@@ -46,7 +46,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination
+    <common-pagination
       v-show="listData.counts > 0"
       :total="listData.counts"
       :page.sync="listQuery.page"
@@ -75,7 +75,7 @@
 <script lang="ts">
 import { Component, Watch } from 'vue-property-decorator'
 import MixinTools from '@/utils/mixins.vue'
-import Pagination from '@/components/pagination/index.vue'
+import CommonPagination from '@/components/common-pagination/index.vue'
 import UserAddDialog from './components/user-add-dialog.vue'
 import UserEditDialog from './components/user-edit-dialog.vue'
 import UserDetailDialog from './components/user-detail-dialog.vue'
@@ -87,7 +87,7 @@ import { mixins } from 'vue-class-component'
 @Component({
   name: 'UserList',
   components: {
-    Pagination,
+    CommonPagination,
     UserAddDialog,
     UserEditDialog,
     UserDetailDialog
