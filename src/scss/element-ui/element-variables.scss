@@ -1,5 +1,29 @@
 /* 改变主题色变量 */
-$--color-primary: #3175fb;
+/* 主色 */
+$--color-primary: #1dc779;
+/* 辅助色 */
+$--color-success: #66c23b;
+$--color-warning: #ffb302;
+$--color-danger: #f56c6c;
+/* 中性色 */
+$--color-text-primary: #20232a;
+$--color-text-secondary: #818693;
+$--color-text-placeholder: #bac0cd;
+$--border-color-base: #d8dde3;
+
+/* Radio 单选框 */
+$--radio-checked-font-color: #20232a;
+$--radio-checked-icon-color: #419eff;
+$--radio-checked-input-border-color: #419eff;
+
+/* Checkbox 多选框 */
+$--checkbox-checked-background-color: #419eff;
+$--checkbox-checked-font-color: #20232a;
+
+/* 背景色 */
+$--background-color: #f3f4f7;
+
+$--color-white: #ffffff;
 
 /* 改变 icon 字体路径变量，必需 */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';

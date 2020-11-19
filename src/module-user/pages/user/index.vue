@@ -2,6 +2,8 @@
   <div class="container">
     <div class="button-area">
       <el-button type="primary" size="small" @click="handleOpenAddDialog"
+        ><svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-btn_add" /></svg
         >新增</el-button
       >
     </div>
@@ -23,15 +25,21 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text" size="mini" @click="handleOpenEditDialog"
+            ><svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-btn_edit" /></svg
             >编辑</el-button
           >
           <el-button
             type="text"
             size="mini"
             @click="handleOpenRemoveConfirm(scope.row.id)"
+            ><svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-btn_del" /></svg
             >删除</el-button
           >
           <el-button type="text" size="mini" @click="handleOpenDetailDialog"
+            ><svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-btn_chakan" /></svg
             >查看</el-button
           >
         </template>
