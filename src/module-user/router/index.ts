@@ -2,6 +2,10 @@ import Layout from '../pages/layout.vue'
 
 export default [
   {
+    path: '/',
+    redirect: '/user/index'
+  },
+  {
     path: '/user',
     component: Layout,
     children: [
