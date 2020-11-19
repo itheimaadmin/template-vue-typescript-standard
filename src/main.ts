@@ -5,15 +5,12 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-// ElementUI
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI)
+import Element from 'element-ui'
+import './scss/element-ui/element-variables.scss'
+Vue.use(Element)
 
-// 注册模块
-import User from '@/module-user'
+import User from './module-user'
 User.install(router)
-// TODO: vue use的方式
 
 new Vue({
   router,
