@@ -1,5 +1,5 @@
 /**
- * 用户
+ * 用户实体
  */
 export interface User {
   /**
@@ -9,7 +9,7 @@ export interface User {
   /**
    * 注册时间
    */
-  create_date: number
+  create_date: string
   /**
    * 邮件
    */

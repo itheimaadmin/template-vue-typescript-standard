@@ -33,7 +33,7 @@
 │  │  │  └─ iconfont.woff2
 │  │  └─ logo.png
 │  ├─ components
-│  │  └─ pagination
+│  │  └─ common-pagination
 │  │     └─ index.vue
 │  ├─ entity
 │  │  ├─ page.ts
